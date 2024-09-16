@@ -22,6 +22,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+          name: http
   strategy:
     blueGreen:
       activeService: active
