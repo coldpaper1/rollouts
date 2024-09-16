@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: rollout-bluegreen
+spec:
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      {{- include "test.labels" . | nindent 4 }}
+  template:
+    metadata:
+      labels:
+        {{- include "test.labels" . | nindent 4 }}
+    spec:
+      containers:
+      - name: rollouts-demo
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+  strategy:
+    blueGreen:
+      activeService: active
+      previewService: preview
+      autoPromotionEnabled: false
