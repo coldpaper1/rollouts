@@ -27,4 +27,4 @@ spec:
     blueGreen:
       activeService: active
       previewService: preview
-      autoPromotionEnabled: true
+      autoPromotionEnabled: false
