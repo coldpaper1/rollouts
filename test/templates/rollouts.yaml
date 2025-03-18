@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: rollout-bluegreen
 spec:
-  {{- if eq autoscaling.enabled autoscaling.enabled }}
+  {{- if not .Values.autoscaling.enabled }}
   replicas: 2
   {{- end }}
   revisionHistoryLimit: 2
