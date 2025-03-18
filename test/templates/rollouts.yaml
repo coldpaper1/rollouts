@@ -28,3 +28,4 @@ spec:
       activeService: active
       previewService: preview
       autoPromotionEnabled: false
+      scaleDownDelaySeconds: 45
